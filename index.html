@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>استبيان نادي الهلال</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__text">
+      <a href="https://tawuniya.com"><img src="./images/tawuniya-logo.svg" alt="logo" width="100px"></a>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="loginBtn" class="login-btn" type="button">
+          <span>تسجيل الدخول</span>
+          <span class="login-icon"><img src="data:image/svg+xml,%3csvg%20fill='none'%20height='16'%20width='17'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20fill='%236b47f5'%3e%3cpath%20d='m11.43%2015.702h-.098c-3.33%200-4.935-1.312-5.212-4.252a.564.564%200%200%201%20.51-.615.569.569%200%200%201%20.615.51c.218%202.355%201.327%203.232%204.095%203.232h.098c3.052%200%204.132-1.08%204.132-4.132v-4.89c0-3.053-1.08-4.133-4.133-4.133h-.097c-2.783%200-3.893.893-4.095%203.293a.565.565%200%200%201%20-.615.51.563.563%200%200%201%20-.518-.608c.255-2.985%201.868-4.32%205.22-4.32h.098c3.683%200%205.258%201.575%205.258%205.258v4.89c0%203.682-1.575%205.257-5.258%205.257z'/%3e%3cpath%20d='m11.16%208.562h-9.66a.567.567%200%200%201%20-.563-.562c0-.308.255-.563.563-.563h9.66a.562.562%200%201%201%200%201.125z'/%3e%3cpath%20d='m9.488%2011.075a.556.556%200%200%201%20-.398-.165.566.566%200%200%201%200-.795l2.115-2.115-2.115-2.115a.566.566%200%200%201%200-.795.566.566%200%200%201%20.795%200l2.513%202.512a.566.566%200%200%201%200%20.795l-2.513%202.513a.556.556%200%200%201%20-.397.165z'/%3e%3c/g%3e%3c/svg%3e" alt="login" width="20px"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro card">
+      <h1>استبيان تقييم المدرب</h1>
+      <p class="muted">نقدّر وقتك. يهدف هذا الاستبيان إلى تقييم أداء المدرب وتطوير العملية التدريبية. تستغرق الإجابة أقل من 5 دقائق.</p>
+    </section>
+
+    <div class="survey-container card">
+      <!-- Progress Indicator -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-steps" id="progressSteps"></div>
+        <div class="progress-text">
+          <span id="currentStep">1</span> من <span id="totalSteps">5</span>
+        </div>
+      </div>
+
+      <form id="surveyForm" novalidate>
+        <!-- Category Title -->
+        <div class="category-header">
+          <h2 id="categoryTitle"></h2>
+          <p class="muted" id="categoryDescription"></p>
+        </div>
+
+        <!-- Form Content -->
+        <div id="formRoot"></div>
+
+        <div class="divider"></div>
+
+        <!-- Navigation -->
+        <div class="form__actions">
+          <button type="button" id="prevBtn" class="btn btn-ghost" style="display:none">السابق</button>
+          <div class="nav-spacer"></div>
+          <button type="button" id="nextBtn" class="btn btn-primary">التالي</button>
+          <button type="submit" id="submitBtn" class="btn btn-primary" style="display:none">إرسال الاستبيان</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <section class="Policy">
+      <p style="font-weight: bold;">
+        © 2025 التعاونية،
+جميع الحقوق محفوظة
+      </p>
+      <p style="font-weight: bold; font-size: small; padding-top: -50%;">التعاونية خاضعة لإشراف ورقابة هيئة التأمين</p>
+    </section>
+
+    <section class="footnote">
+      <p class="muted xs">بتقديمك لهذه الإجابات فأنت توافق على استخدام بياناتك لتطوير العملية التدريبية وفق سياسة الخصوصية.</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <template id="thankYouTmpl">
+    <section class="thankyou card">
+      <h2>شكرًا لمشاركتك!</h2>
+      <p class="muted">تم استلام الاستبيان بنجاح. يمكنك إغلاق الصفحة الآن.</p>
+      <button class="btn btn-primary" onclick="window.location.reload()">إرسال استبيان جديد</button>
+    </section>
+  </template>
+
+  <!-- Authentication Modal -->
+  <div id="authModal" class="auth-modal">
+    <div class="auth-modal-overlay"></div>
+    <div class="auth-modal-content">
+      <button class="auth-close" id="closeAuth">&times;</button>
+      
+      <!-- Sign In Form -->
+      <div id="signInForm" class="auth-form active">
+        <div class="auth-header">
+          <h2>تسجيل الدخول</h2>
+          <p class="muted">أدخل بياناتك للوصول إلى حسابك</p>
+        </div>
+        
+        <form class="auth-form-content">
+          <div class="field">
+            <label class="field__label">البريد الإلكتروني *</label>
+            <input type="email" class="input" placeholder="example@email.com" required>
+          </div>
+          
+          <div class="field">
+            <label class="field__label">كلمة المرور *</label>
+            <input type="password" class="input" placeholder="••••••••" required>
+          </div>
+          
+          <div class="auth-options">
+            <label class="choice">
+              <input type="checkbox">
+              <span>تذكرني</span>
+            </label>
+            <a href="#" class="forgot-link">نسيت كلمة المرور؟</a>
+          </div>
+          
+          <button type="submit" class="btn btn-primary auth-submit">تسجيل الدخول</button>
+        </form>
+        
+        <div class="auth-switch">
+          <span class="muted">ليس لديك حساب؟</span>
+          <button type="button" id="switchToSignUp" class="switch-btn">إنشاء حساب جديد</button>
+        </div>
+      </div>
+      
+      <!-- Sign Up Form -->
+      <div id="signUpForm" class="auth-form">
+        <div class="auth-header">
+          <h2>إنشاء حساب جديد</h2>
+          <p class="muted">أنشئ حسابك الجديد للبدء</p>
+        </div>
+        
+        <form class="auth-form-content">
+          <div class="field">
+            <label class="field__label">الاسم الكامل *</label>
+            <input type="text" class="input" placeholder="محمد أحمد" required>
+          </div>
+          
+          <div class="field">
+            <label class="field__label">البريد الإلكتروني *</label>
+            <input type="email" class="input" placeholder="example@email.com" required>
+          </div>
+          
+          <div class="field">
+            <label class="field__label">رقم الجوال *</label>
+            <input type="tel" class="input" placeholder="05xxxxxxxx" required>
+          </div>
+          
+          <div class="field">
+            <label class="field__label">كلمة المرور *</label>
+            <input type="password" class="input" placeholder="••••••••" required>
+          </div>
+          
+          <div class="field">
+            <label class="field__label">تأكيد كلمة المرور *</label>
+            <input type="password" class="input" placeholder="••••••••" required>
+          </div>
+          
+          <div class="auth-options">
+            <label class="choice">
+              <input type="checkbox" required>
+              <span>أوافق على <a href="#" class="link">الشروط والأحكام</a></span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary auth-submit">إنشاء الحساب</button>
+        </form>
+        
+        <div class="auth-switch">
+          <span class="muted">لديك حساب بالفعل؟</span>
+          <button type="button" id="switchToSignIn" class="switch-btn">تسجيل الدخول</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
