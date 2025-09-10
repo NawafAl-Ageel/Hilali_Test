@@ -381,9 +381,13 @@ function renderCurrentStep(direction = 'none') {
   // Restore saved data
   restoreStepData(category);
 
+  // Add event listeners for real-time validation
+  addFormValidationListeners();
+
   // Update navigation
   updateNavigation();
   updateProgress();
+  updateButtonState();
 }
 
 function restoreStepData(category) {
@@ -398,6 +402,10 @@ function restoreStepData(category) {
       const el = document.getElementById(q.id);
       if (el) el.value = savedValue;
     } else if (q.type === "radio") {
+      const el = document.querySelector(`input[name="${q.id}"][value="${savedValue}"]`);
+      if (el) el.checked = true;
+    } else if (q.type === "rating") {
+      // Special handling for rating inputs
       const el = document.querySelector(`input[name="${q.id}"][value="${savedValue}"]`);
       if (el) el.checked = true;
     } else if (q.type === "checkbox") {
@@ -424,6 +432,10 @@ function saveCurrentStepData() {
       surveyData[q.id] = values.length > 0 ? values : undefined;
     } else if (q.type === "checkbox-single") {
       surveyData[q.id] = formData.has(q.id);
+    } else if (q.type === "rating") {
+      // Special handling for rating inputs
+      const selectedRating = document.querySelector(`input[name="${q.id}"]:checked`);
+      surveyData[q.id] = selectedRating ? selectedRating.value : undefined;
     } else {
       const value = formData.get(q.id);
       surveyData[q.id] = value || undefined;
@@ -476,7 +488,77 @@ function updateProgress() {
   }
 }
 
+function updateButtonState() {
+  const isValid = validateCurrentStepRealTime();
+  
+  if (isValid) {
+    nextBtn.classList.remove("disabled");
+    nextBtn.disabled = false;
+  } else {
+    nextBtn.classList.add("disabled");
+    nextBtn.disabled = true;
+  }
+}
+
+function validateCurrentStepRealTime() {
+  const category = surveyCategories[currentStep];
+  const requiredFields = category.questions.filter(q => q.required);
+  
+  for (const q of requiredFields) {
+    if (q.type === "checkbox-single") {
+      const el = document.querySelector(`input[name="${q.id}"]`);
+      if (!el || !el.checked) return false;
+    } else if (q.type === "radio" || q.type === "rating") {
+      const el = document.querySelector(`input[name="${q.id}"]:checked`);
+      if (!el) return false;
+    } else if (q.type === "text" || q.type === "textarea") {
+      const el = document.getElementById(q.id);
+      if (!el || !el.value.trim()) return false;
+    } else if (q.type === "select") {
+      const el = document.getElementById(q.id);
+      if (!el || !el.value) return false;
+    }
+  }
+  return true;
+}
+
+function addFormValidationListeners() {
+  const category = surveyCategories[currentStep];
+  
+  category.questions.forEach(q => {
+    if (q.required) {
+      if (q.type === "text" || q.type === "textarea") {
+        const el = document.getElementById(q.id);
+        if (el) {
+          el.addEventListener('input', updateButtonState);
+          el.addEventListener('blur', updateButtonState);
+        }
+      } else if (q.type === "select") {
+        const el = document.getElementById(q.id);
+        if (el) {
+          el.addEventListener('change', updateButtonState);
+        }
+      } else if (q.type === "radio" || q.type === "rating") {
+        const radioInputs = document.querySelectorAll(`input[name="${q.id}"]`);
+        radioInputs.forEach(input => {
+          input.addEventListener('change', updateButtonState);
+        });
+      } else if (q.type === "checkbox-single") {
+        const el = document.querySelector(`input[name="${q.id}"]`);
+        if (el) {
+          el.addEventListener('change', updateButtonState);
+        }
+      }
+    }
+  });
+}
+
 function nextStep() {
+  // Prevent action if button is disabled
+  if (nextBtn.disabled || nextBtn.classList.contains('disabled')) {
+    return;
+  }
+  
   saveCurrentStepData();
   
   if (!validateCurrentStep()) {
