@@ -1,235 +1,183 @@
-const surveyCategories = [
+// Gamified Alhilal Fan Challenge System
+const challengeCategories = [
   {
-    id: "basic",
-    title: "المعلومات الأساسية",
-    description: "معلومات عامة عن الفريق واللاعب",
+    id: "history",
+    title: "تاريخ الهلال العريق",
+    description: "اختبر معرفتك بتاريخ النادي العريق",
     questions: [
       {
-        id: "teamCategory",
-        type: "select",
-        label: "فئة الفريق",
-        required: true,
-        placeholder: "اختر فئة الفريق",
-        options: [
-          {value:"first", label:"الفريق الأول"},
-          {value:"youth", label:"فريق الشباب"},
-          {value:"juniors", label:"فريق الناشئين"},
-          {value:"academy", label:"الأكاديمية"}
-        ]
-      },
-      {
-        id: "fullName",
-        type: "text",
-        label: "الاسم الكامل",
-        required: true,
-        placeholder: "مثال: محمد أحمد"
-      },
-      {
-        id: "playerNumber",
-        type: "text",
-        label: "رقم اللاعب (اختياري)",
-        required: false,
-        inputmode: "numeric",
-        placeholder: "رقم القميص"
-      },
-      {
-        id: "position",
-        type: "select",
-        label: "المركز",
-        required: true,
-        placeholder: "اختر مركزك",
-        options: [
-          {value:"goalkeeper", label:"حارس مرمى"},
-          {value:"defender", label:"مدافع"},
-          {value:"midfielder", label:"وسط ميدان"},
-          {value:"forward", label:"مهاجم"}
-        ]
-      }
-    ]
-  },
-  {
-    id: "performance",
-    title: "الأداء العام للمدرب",
-    description: "تقييم شامل لأداء المدرب",
-    questions: [
-      {
-        id: "coachPerformance",
-        type: "rating",
-        label: "كيف تقيم أداء المدرب بشكل عام؟",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "tacticalKnowledge",
-        type: "rating",
-        label: "المعرفة التكتيكية للمدرب",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "gameManagement",
-        type: "rating",
-        label: "إدارة المباريات",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "decisionMaking",
-        type: "rating",
-        label: "اتخاذ القرارات المناسبة",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      }
-    ]
-  },
-  {
-    id: "training",
-    title: "التدريب وتطوير اللاعبين",
-    description: "تقييم جودة التدريبات وتطوير المهارات",
-    questions: [
-      {
-        id: "trainingQuality",
-        type: "rating",
-        label: "جودة التدريبات",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "playerDevelopment",
-        type: "rating",
-        label: "تطوير مهارات اللاعبين",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "trainingVariety",
-        type: "rating",
-        label: "تنوع التدريبات",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "physicalPreparation",
-        type: "rating",
-        label: "الإعداد البدني",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      }
-    ]
-  },
-  {
-    id: "communication",
-    title: "التواصل والعلاقات",
-    description: "تقييم التواصل والتحفيز",
-    questions: [
-      {
-        id: "communication",
-        type: "rating",
-        label: "التواصل مع اللاعبين",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "motivation",
-        type: "rating",
-        label: "تحفيز اللاعبين",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "teamSpirit",
-        type: "rating",
-        label: "بناء روح الفريق",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      },
-      {
-        id: "discipline",
-        type: "rating",
-        label: "الانضباط والنظام",
-        required: true,
-        scale: 5,
-        labels: ["ضعيف","مقبول","جيد","جيد جداً","ممتاز"]
-      }
-    ]
-  },
-  {
-    id: "feedback",
-    title: "التقييم النهائي والملاحظات",
-    description: "ملاحظاتك وتوصياتك النهائية",
-    questions: [
-      {
-        id: "recommendCoach",
+        id: "foundation_year",
         type: "radio",
-        label: "هل تنصح بالاحتفاظ بهذا المدرب؟",
+        label: "في أي عام تأسس نادي الهلال؟",
         required: true,
         options: [
-          {value:"yes", label:"نعم، بالتأكيد"},
-          {value:"maybe", label:"ربما"},
-          {value:"no", label:"لا، يجب تغييره"}
-        ]
+          {value:"1957", label:"1957"},
+          {value:"1958", label:"1958"},
+          {value:"1959", label:"1959"},
+          {value:"1960", label:"1960"}
+        ],
+        points: 10
       },
       {
-        id: "strengths",
-        type: "checkbox",
-        label: "نقاط القوة في المدرب (يمكن اختيار أكثر من خيار)",
-        required: false,
+        id: "first_championship",
+        type: "radio",
+        label: "ما هو أول لقب رسمي فاز به الهلال؟",
+        required: true,
         options: [
-          {value:"tactical", label:"المعرفة التكتيكية"},
-          {value:"motivation", label:"تحفيز اللاعبين"},
-          {value:"discipline", label:"الانضباط"},
-          {value:"communication", label:"التواصل الجيد"},
-          {value:"experience", label:"الخبرة"},
-          {value:"player_development", label:"تطوير اللاعبين"}
-        ]
+          {value:"king_cup_1961", label:"كأس الملك 1961"},
+          {value:"league_1977", label:"الدوري السعودي 1977"},
+          {value:"crown_prince_1964", label:"كأس ولي العهد 1964"},
+          {value:"federation_cup_1975", label:"كأس الاتحاد 1975"}
+        ],
+        points: 15
       },
       {
-        id: "improvements",
-        type: "checkbox",
-        label: "المجالات التي تحتاج تحسين (يمكن اختيار أكثر من خيار)",
-        required: false,
+        id: "thiago_neves_goal",
+        type: "video",
+        label: "مين سجل هذا الهدف؟",
+        required: true,
+        video: "videos/Thiago_Neves_Goal.mp4",
         options: [
-          {value:"tactical", label:"التخطيط التكتيكي"},
-          {value:"communication", label:"التواصل مع اللاعبين"},
-          {value:"training", label:"تنظيم التدريبات"},
-          {value:"motivation", label:"تحفيز اللاعبين"},
-          {value:"discipline", label:"الانضباط"},
-          {value:"substitutions", label:"التغييرات أثناء المباريات"}
-        ]
+          {value:"savic", label:"سافيتش"},
+          {value:"al_breik", label:"محمد البريك"},
+          {value:"thiago_neves", label:"تياغو نيفيز"},
+          {value:"yasser_al_qhtani", label:"ياسر القحطاني"}
+        ],
+        correctAnswer: "thiago_neves",
+        points: 20
       },
       {
-        id: "comments",
+        id: "stadium_capacity",
+        type: "rating",
+        label: "كم تبلغ سعة ملعب الأمير محمد بن فهد؟",
+        required: true,
+        scale: 5,
+        labels: ["15,000", "25,000", "35,000", "45,000", "55,000"],
+        points: 12
+      }
+    ]
+  },
+  {
+    id: "players",
+    title: "النجوم والأساطير",
+    description: "تعرف على نجوم الهلال الحاليين والسابقين",
+    questions: [
+      {
+        id: "current_captain",
+        type: "radio",
+        label: "من هو قائد الهلال الحالي؟",
+        required: true,
+        options: [
+          {value:"salem_al_dawsari", label:"سالم الدوسري"},
+          {value:"yasser_al_shahrani", label:"ياسر الشهراني"},
+          {value:"abdullah_al_maliki", label:"عبدالله المالكي"},
+          {value:"mohammed_al_owais", label:"محمد العويس"}
+        ],
+        points: 15
+      },
+      {
+        id: "goal_scorer_video",
+        type: "video",
+        label: "من سجل هذا الهدف الرائع؟",
+        required: true,
+        video: "videos/amazing_goal.mp4",
+        options: [
+          {value:"salem_al_dawsari", label:"سالم الدوسري"},
+          {value:"michael", label:"مايكل"},
+          {value:"neymar", label:"نيمار"},
+          {value:"malcom", label:"مالكوم"}
+        ],
+        points: 25
+      },
+      {
+        id: "commentary_audio",
+        type: "audio",
+        label: "في أي مباراة كان هذا التعليق؟",
+        required: true,
+        audio: "audio/famous_commentary.mp3",
+        options: [
+          {value:"alhilal_vs_ittihad_2019", label:"الهلال × الاتحاد 2019"},
+          {value:"alhilal_vs_nassr_2020", label:"الهلال × النصر 2020"},
+          {value:"alhilal_vs_shabab_2021", label:"الهلال × الشباب 2021"},
+          {value:"alhilal_vs_ahli_2022", label:"الهلال × الأهلي 2022"}
+        ],
+        points: 30
+      },
+      {
+        id: "trophies_count",
+        type: "rating",
+        label: "كم عدد البطولات الرسمية للهلال؟",
+        required: true,
+        scale: 5,
+        labels: ["50+", "60+", "70+", "80+", "90+"],
+        points: 18
+      }
+    ]
+  },
+  {
+    id: "achievements",
+    title: "الإنجازات والبطولات",
+    description: "تحدي معرفتك بإنجازات الهلال المحلية والقارية",
+    questions: [
+      {
+        id: "asian_championships",
+        type: "checkbox",
+        label: "ما هي البطولات الآسيوية التي فاز بها الهلال؟",
+        required: true,
+        options: [
+          {value:"acl_2019", label:"دوري أبطال آسيا 2019"},
+          {value:"acl_2021", label:"دوري أبطال آسيا 2021"},
+          {value:"acl_2022", label:"دوري أبطال آسيا 2022"},
+          {value:"acl_2023", label:"دوري أبطال آسيا 2023"},
+          {value:"acl_2024", label:"دوري أبطال آسيا 2024"}
+        ],
+        points: 20
+      },
+      {
+        id: "famous_quote",
         type: "textarea",
-        label: "ملاحظاتك الإضافية حول المدرب",
-        required: false,
-        placeholder: "اكتب ملاحظاتك هنا..."
+        label: "اكتب أشهر مقولة في تاريخ الهلال",
+        required: true,
+        placeholder: "اكتب المقولة هنا...",
+        points: 15
+      },
+      {
+        id: "stadium_name",
+        type: "text",
+        label: "ما هو اسم الملعب الرسمي للهلال؟",
+        required: true,
+        placeholder: "اسم الملعب",
+        points: 10
       },
       {
         id: "consent",
         type: "checkbox-single",
-        label: "أوافق على استخدام بياناتي لتطوير العملية التدريبية وفق سياسة الخصوصية",
-        required: true
+        label: "أوافق على مشاركة نتائجي في لوحة المتصدرين",
+        required: true,
+        points: 5
       }
     ]
   }
 ];
 
-// Multi-step survey logic
+// Gamification System
 let currentStep = 0;
-const totalSteps = surveyCategories.length;
-let surveyData = {};
+let currentQuestion = 0;
+let totalQuestions = 0;
+let challengeData = {};
+let userStats = {
+  points: 0,
+  level: 1,
+  streak: 0,
+  achievements: []
+};
 
+// Calculate total questions
+challengeCategories.forEach(category => {
+  totalQuestions += category.questions.length;
+});
+
+// DOM Elements
 const root = document.getElementById("formRoot");
 const form = document.getElementById("surveyForm");
 const toast = document.getElementById("toast");
@@ -243,6 +191,11 @@ const totalStepsEl = document.getElementById("totalSteps");
 const progressFill = document.getElementById("progressFill");
 const progressSteps = document.getElementById("progressSteps");
 
+// Gamification Elements
+const currentPointsEl = document.getElementById("currentPoints");
+const currentLevelEl = document.getElementById("currentLevel");
+const streakEl = document.getElementById("streak");
+
 function el(tag, attrs={}, ...children){
   const n = document.createElement(tag);
   Object.entries(attrs).forEach(([k,v])=>{
@@ -255,17 +208,19 @@ function el(tag, attrs={}, ...children){
   return n;
 }
 
-function fieldWrap(id, label, required){
+function fieldWrap(id, label, required, points = 0){
   const wrap = el("div", {class:"field"});
   if(label){
-    const l = el("label", {class:"field__label", for:id}, label, required ? el("span",{class:"muted"}, " *") : "");
-    wrap.append(l);
+    const labelEl = el("label", {class:"field__label", for:id}, label);
+    if(required) labelEl.append(el("span",{class:"muted"}, " *"));
+    if(points > 0) labelEl.append(el("span",{class:"points-badge"}, `+${points} نقطة`));
+    wrap.append(labelEl);
   }
   return wrap;
 }
 
 function renderQuestion(q) {
-  let w = fieldWrap(q.id, q.type==="checkbox-single" ? "" : q.label, q.required);
+  let w = fieldWrap(q.id, q.type==="checkbox-single" ? "" : q.label, q.required, q.points);
 
   if(q.type==="text"){
     const inp = el("input",{id:q.id,name:q.id, class:"input", type:"text", required:q.required||false, placeholder:q.placeholder||""});
@@ -336,6 +291,87 @@ function renderQuestion(q) {
     w.append(group);
   }
 
+  // Video Question
+  if(q.type==="video"){
+    const videoContainer = el("div", {class:"question-video"});
+    
+    // Add video title
+    const videoTitle = el("h4", {style:"margin-bottom:16px; font-size:18px; font-weight:600; color:var(--text);"}, "شاهد الفيديو:");
+    videoContainer.append(videoTitle);
+    
+    // Create video element
+    const video = el("video", {
+      controls: true,
+      width: "100%",
+      height: "300",
+      autoplay: true,
+      loop: true,
+      muted: true,
+      style: "border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.15);"
+    });
+    
+    // Set video source
+    video.src = q.video;
+    video.setAttribute("preload", "metadata");
+    
+    videoContainer.append(video);
+    
+    // Add options below video
+    const list = el("div",{class:"choice-list"});
+    (q.options||[]).forEach((o,i)=>{
+      const id = `${q.id}_${i}`;
+      const item = el("label",{class:"choice", for:id});
+      const input = el("input",{type:"radio", id, name:q.id, value:o.value, required:q.required||false});
+      const txt = document.createTextNode(o.label);
+      item.prepend(input);
+      item.append(txt);
+      list.append(item);
+    });
+    videoContainer.append(list);
+    w.append(videoContainer);
+  }
+
+  // Audio Question
+  if(q.type==="audio"){
+    const audioContainer = el("div", {class:"question-audio"});
+    const audio = el("audio", {controls:true, style:"width:100%; margin-bottom:16px;"});
+    audio.src = q.audio;
+    audioContainer.append(audio);
+    
+    const list = el("div",{class:"choice-list"});
+    (q.options||[]).forEach((o,i)=>{
+      const id = `${q.id}_${i}`;
+      const item = el("label",{class:"choice", for:id});
+      const input = el("input",{type:"radio", id, name:q.id, value:o.value, required:q.required||false});
+      const txt = document.createTextNode(o.label);
+      item.prepend(input);
+      item.append(txt);
+      list.append(item);
+    });
+    audioContainer.append(list);
+    w.append(audioContainer);
+  }
+
+  // Image Question
+  if(q.type==="image"){
+    const imageContainer = el("div", {class:"question-image"});
+    const img = el("img", {src:q.image, alt:"صورة السؤال", style:"max-width:100%; border-radius:12px;"});
+    imageContainer.append(img);
+    
+    const list = el("div",{class:"choice-list"});
+    (q.options||[]).forEach((o,i)=>{
+      const id = `${q.id}_${i}`;
+      const item = el("label",{class:"choice", for:id});
+      const input = el("input",{type:"radio", id, name:q.id, value:o.value, required:q.required||false});
+      const txt = document.createTextNode(o.label);
+      item.prepend(input);
+      item.append(txt);
+      list.append(item);
+    });
+    imageContainer.append(list);
+    w.append(imageContainer);
+  }
+
   if(q.help){
     w.append(el("div",{class:"help"}, q.help));
   }
@@ -344,7 +380,22 @@ function renderQuestion(q) {
 }
 
 function renderCurrentStep(direction = 'none') {
-  const category = surveyCategories[currentStep];
+  // Find current question
+  let questionIndex = 0;
+  let currentCategory = null;
+  let currentQ = null;
+  
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
+    if (currentQuestion < questionIndex + category.questions.length) {
+      currentCategory = category;
+      currentQ = category.questions[currentQuestion - questionIndex];
+      break;
+    }
+    questionIndex += category.questions.length;
+  }
+  
+  if (!currentCategory || !currentQ) return;
   
   // Add step content class for animation
   root.className = "step-content";
@@ -369,17 +420,15 @@ function renderCurrentStep(direction = 'none') {
   }
   
   // Update category info
-  categoryTitle.textContent = category.title;
-  categoryDescription.textContent = category.description;
+  categoryTitle.textContent = currentCategory.title;
+  categoryDescription.textContent = currentCategory.description;
   
-  // Clear and render questions
+  // Clear and render single question
   root.innerHTML = "";
-  category.questions.forEach(q => {
-    root.append(renderQuestion(q));
-  });
+  root.append(renderQuestion(currentQ));
 
   // Restore saved data
-  restoreStepData(category);
+  restoreQuestionData(currentQ);
 
   // Add event listeners for real-time validation
   addFormValidationListeners();
@@ -388,108 +437,173 @@ function renderCurrentStep(direction = 'none') {
   updateNavigation();
   updateProgress();
   updateButtonState();
+  updateGamificationStats();
 }
 
-function restoreStepData(category) {
-  category.questions.forEach(q => {
-    const savedValue = surveyData[q.id];
-    if (savedValue === undefined) return;
+function restoreQuestionData(q) {
+  const savedValue = challengeData[q.id];
+  if (savedValue === undefined) return;
 
-    if (q.type === "text" || q.type === "textarea") {
-      const el = document.getElementById(q.id);
-      if (el) el.value = savedValue;
-    } else if (q.type === "select") {
-      const el = document.getElementById(q.id);
-      if (el) el.value = savedValue;
-    } else if (q.type === "radio") {
-      const el = document.querySelector(`input[name="${q.id}"][value="${savedValue}"]`);
-      if (el) el.checked = true;
-    } else if (q.type === "rating") {
-      // Special handling for rating inputs
-      const el = document.querySelector(`input[name="${q.id}"][value="${savedValue}"]`);
-      if (el) el.checked = true;
-    } else if (q.type === "checkbox") {
-      if (Array.isArray(savedValue)) {
-        savedValue.forEach(val => {
-          const el = document.querySelector(`input[name="${q.id}[]"][value="${val}"]`);
-          if (el) el.checked = true;
-        });
-      }
-    } else if (q.type === "checkbox-single") {
-      const el = document.querySelector(`input[name="${q.id}"]`);
-      if (el) el.checked = savedValue === true;
+  if (q.type === "text" || q.type === "textarea") {
+    const el = document.getElementById(q.id);
+    if (el) el.value = savedValue;
+  } else if (q.type === "select") {
+    const el = document.getElementById(q.id);
+    if (el) el.value = savedValue;
+  } else if (q.type === "radio" || q.type === "rating") {
+    const el = document.querySelector(`input[name="${q.id}"][value="${savedValue}"]`);
+    if (el) el.checked = true;
+  } else if (q.type === "checkbox") {
+    if (Array.isArray(savedValue)) {
+      savedValue.forEach(val => {
+        const el = document.querySelector(`input[name="${q.id}[]"][value="${val}"]`);
+        if (el) el.checked = true;
+      });
     }
-  });
+  } else if (q.type === "checkbox-single") {
+    const el = document.querySelector(`input[name="${q.id}"]`);
+    if (el) el.checked = savedValue === true;
+  }
 }
 
-function saveCurrentStepData() {
-  const category = surveyCategories[currentStep];
+function saveCurrentQuestionData() {
+  // Find current question
+  let questionIndex = 0;
+  let currentQ = null;
+  
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
+    if (currentQuestion < questionIndex + category.questions.length) {
+      currentQ = category.questions[currentQuestion - questionIndex];
+      break;
+    }
+    questionIndex += category.questions.length;
+  }
+  
+  if (!currentQ) return;
+  
   const formData = new FormData(form);
   
-  category.questions.forEach(q => {
-    if (q.type === "checkbox") {
-      const values = formData.getAll(`${q.id}[]`);
-      surveyData[q.id] = values.length > 0 ? values : undefined;
-    } else if (q.type === "checkbox-single") {
-      surveyData[q.id] = formData.has(q.id);
-    } else if (q.type === "rating") {
-      // Special handling for rating inputs
-      const selectedRating = document.querySelector(`input[name="${q.id}"]:checked`);
-      surveyData[q.id] = selectedRating ? selectedRating.value : undefined;
-    } else {
-      const value = formData.get(q.id);
-      surveyData[q.id] = value || undefined;
-    }
-  });
+  if (currentQ.type === "checkbox") {
+    const values = formData.getAll(`${currentQ.id}[]`);
+    challengeData[currentQ.id] = values.length > 0 ? values : undefined;
+  } else if (currentQ.type === "checkbox-single") {
+    challengeData[currentQ.id] = formData.has(currentQ.id);
+  } else if (currentQ.type === "rating") {
+    const selectedRating = document.querySelector(`input[name="${currentQ.id}"]:checked`);
+    challengeData[currentQ.id] = selectedRating ? selectedRating.value : undefined;
+  } else {
+    const value = formData.get(currentQ.id);
+    challengeData[currentQ.id] = value || undefined;
+  }
 }
 
-function validateCurrentStep() {
-  const category = surveyCategories[currentStep];
-  const requiredFields = category.questions.filter(q => q.required);
+function validateCurrentQuestionRealTime() {
+  // Find current question
+  let questionIndex = 0;
+  let currentQ = null;
   
-  for (const q of requiredFields) {
-    if (q.type === "checkbox-single") {
-      const el = document.querySelector(`input[name="${q.id}"]`);
-      if (!el || !el.checked) return false;
-    } else if (q.type === "radio") {
-      const el = document.querySelector(`input[name="${q.id}"]:checked`);
-      if (!el) return false;
-    } else {
-      const value = surveyData[q.id];
-      if (!value || (typeof value === 'string' && value.trim() === '')) return false;
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
+    if (currentQuestion < questionIndex + category.questions.length) {
+      currentQ = category.questions[currentQuestion - questionIndex];
+      break;
     }
+    questionIndex += category.questions.length;
+  }
+  
+  if (!currentQ || !currentQ.required) return true;
+  
+  if (currentQ.type === "checkbox-single") {
+    const el = document.querySelector(`input[name="${currentQ.id}"]`);
+    if (!el || !el.checked) return false;
+  } else if (currentQ.type === "radio" || currentQ.type === "rating") {
+    const el = document.querySelector(`input[name="${currentQ.id}"]:checked`);
+    if (!el) return false;
+  } else if (currentQ.type === "text" || currentQ.type === "textarea") {
+    const el = document.getElementById(currentQ.id);
+    if (!el || !el.value.trim()) return false;
+  } else if (currentQ.type === "select") {
+    const el = document.getElementById(currentQ.id);
+    if (!el || !el.value) return false;
   }
   return true;
 }
 
+function addFormValidationListeners() {
+  // Find current question
+  let questionIndex = 0;
+  let currentQ = null;
+  
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
+    if (currentQuestion < questionIndex + category.questions.length) {
+      currentQ = category.questions[currentQuestion - questionIndex];
+      break;
+    }
+    questionIndex += category.questions.length;
+  }
+  
+  if (!currentQ || !currentQ.required) return;
+  
+  if (currentQ.type === "text" || currentQ.type === "textarea") {
+    const el = document.getElementById(currentQ.id);
+    if (el) {
+      el.addEventListener('input', updateButtonState);
+      el.addEventListener('blur', updateButtonState);
+    }
+  } else if (currentQ.type === "select") {
+    const el = document.getElementById(currentQ.id);
+    if (el) {
+      el.addEventListener('change', updateButtonState);
+    }
+  } else if (currentQ.type === "radio" || currentQ.type === "rating") {
+    const radioInputs = document.querySelectorAll(`input[name="${currentQ.id}"]`);
+    radioInputs.forEach(input => {
+      input.addEventListener('change', updateButtonState);
+    });
+  } else if (currentQ.type === "checkbox-single") {
+    const el = document.querySelector(`input[name="${currentQ.id}"]`);
+    if (el) {
+      el.addEventListener('change', updateButtonState);
+    }
+  }
+}
+
 function updateNavigation() {
-  prevBtn.style.display = currentStep === 0 ? "none" : "inline-block";
-  nextBtn.style.display = currentStep === totalSteps - 1 ? "none" : "inline-block";
-  submitBtn.style.display = currentStep === totalSteps - 1 ? "inline-block" : "none";
+  prevBtn.style.display = currentQuestion === 0 ? "none" : "inline-block";
+  nextBtn.style.display = currentQuestion === totalQuestions - 1 ? "none" : "inline-block";
+  submitBtn.style.display = currentQuestion === totalQuestions - 1 ? "inline-block" : "none";
 }
 
 function updateProgress() {
-  const progress = ((currentStep + 1) / totalSteps) * 100;
+  const progress = ((currentQuestion + 1) / totalQuestions) * 100;
   progressFill.style.width = `${progress}%`;
   
-  currentStepEl.textContent = currentStep + 1;
-  totalStepsEl.textContent = totalSteps;
+  currentStepEl.textContent = currentQuestion + 1;
+  totalStepsEl.textContent = totalQuestions;
   
-  // Update progress steps
+  // Update progress steps - show categories
   progressSteps.innerHTML = "";
-  for (let i = 0; i < totalSteps; i++) {
+  let questionIndex = 0;
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
     const step = el("div", {class: "progress-step"});
     step.textContent = i + 1;
     
-    if (i < currentStep) step.classList.add("completed");
-    else if (i === currentStep) step.classList.add("active");
+    if (currentQuestion >= questionIndex + category.questions.length) {
+      step.classList.add("completed");
+    } else if (currentQuestion >= questionIndex) {
+      step.classList.add("active");
+    }
     
     progressSteps.append(step);
+    questionIndex += category.questions.length;
   }
 }
 
 function updateButtonState() {
-  const isValid = validateCurrentStepRealTime();
+  const isValid = validateCurrentQuestionRealTime();
   
   if (isValid) {
     nextBtn.classList.remove("disabled");
@@ -500,100 +614,69 @@ function updateButtonState() {
   }
 }
 
-function validateCurrentStepRealTime() {
-  const category = surveyCategories[currentStep];
-  const requiredFields = category.questions.filter(q => q.required);
-  
-  for (const q of requiredFields) {
-    if (q.type === "checkbox-single") {
-      const el = document.querySelector(`input[name="${q.id}"]`);
-      if (!el || !el.checked) return false;
-    } else if (q.type === "radio" || q.type === "rating") {
-      const el = document.querySelector(`input[name="${q.id}"]:checked`);
-      if (!el) return false;
-    } else if (q.type === "text" || q.type === "textarea") {
-      const el = document.getElementById(q.id);
-      if (!el || !el.value.trim()) return false;
-    } else if (q.type === "select") {
-      const el = document.getElementById(q.id);
-      if (!el || !el.value) return false;
-    }
-  }
-  return true;
+function updateGamificationStats() {
+  currentPointsEl.textContent = userStats.points;
+  currentLevelEl.textContent = userStats.level;
+  streakEl.textContent = userStats.streak;
 }
 
-function addFormValidationListeners() {
-  const category = surveyCategories[currentStep];
-  
-  category.questions.forEach(q => {
-    if (q.required) {
-      if (q.type === "text" || q.type === "textarea") {
-        const el = document.getElementById(q.id);
-        if (el) {
-          el.addEventListener('input', updateButtonState);
-          el.addEventListener('blur', updateButtonState);
-        }
-      } else if (q.type === "select") {
-        const el = document.getElementById(q.id);
-        if (el) {
-          el.addEventListener('change', updateButtonState);
-        }
-      } else if (q.type === "radio" || q.type === "rating") {
-        const radioInputs = document.querySelectorAll(`input[name="${q.id}"]`);
-        radioInputs.forEach(input => {
-          input.addEventListener('change', updateButtonState);
-        });
-      } else if (q.type === "checkbox-single") {
-        const el = document.querySelector(`input[name="${q.id}"]`);
-        if (el) {
-          el.addEventListener('change', updateButtonState);
-        }
+function calculatePoints() {
+  let totalPoints = 0;
+  challengeCategories.forEach(category => {
+    category.questions.forEach(q => {
+      const savedValue = challengeData[q.id];
+      if (savedValue !== undefined && savedValue !== "" && savedValue !== false) {
+        totalPoints += q.points || 0;
       }
-    }
+    });
   });
+  return totalPoints;
 }
 
 function nextStep() {
-  // Prevent action if button is disabled
   if (nextBtn.disabled || nextBtn.classList.contains('disabled')) {
     return;
   }
   
-  saveCurrentStepData();
+  saveCurrentQuestionData();
   
-  if (!validateCurrentStep()) {
+  if (!validateCurrentQuestion()) {
     showToast("يرجى استكمال الحقول المطلوبة");
     return;
   }
   
-  if (currentStep < totalSteps - 1) {
-    // Animate current content out to the left
+  // Show answer feedback for video questions
+  if (shouldShowAnswerFeedback()) {
+    showAnswerFeedback();
+    return;
+  }
+  
+  if (currentQuestion < totalQuestions - 1) {
     root.classList.add('slide-out-left');
     categoryTitle.parentElement.classList.add('fade');
     
     setTimeout(() => {
-      currentStep++;
+      currentQuestion++;
       renderCurrentStep('next');
     }, 200);
   }
 }
 
 function prevStep() {
-  saveCurrentStepData();
+  saveCurrentQuestionData();
   
-  if (currentStep > 0) {
-    // Animate current content out to the right
+  if (currentQuestion > 0) {
     root.classList.add('slide-out-right');
     categoryTitle.parentElement.classList.add('fade');
     
     setTimeout(() => {
-      currentStep--;
+      currentQuestion--;
       renderCurrentStep('prev');
     }, 200);
   }
 }
 
-function downloadJSON(obj, filename="alhilal-coach-evaluation.json"){
+function downloadJSON(obj, filename="alhilal-challenge-results.json"){
   const blob = new Blob([JSON.stringify(obj,null,2)],{type:"application/json"});
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -607,32 +690,213 @@ function showToast(msg){
   setTimeout(()=> toast.classList.remove("show"), 2200);
 }
 
-function submitSurvey() {
-  saveCurrentStepData();
+function validateCurrentQuestion() {
+  // Find current question
+  let questionIndex = 0;
+  let currentQ = null;
   
-  if (!validateCurrentStep()) {
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
+    if (currentQuestion < questionIndex + category.questions.length) {
+      currentQ = category.questions[currentQuestion - questionIndex];
+      break;
+    }
+    questionIndex += category.questions.length;
+  }
+  
+  if (!currentQ || !currentQ.required) return true;
+  
+  if (currentQ.type === "checkbox-single") {
+    const el = document.querySelector(`input[name="${currentQ.id}"]`);
+    if (!el || !el.checked) return false;
+  } else if (currentQ.type === "radio" || currentQ.type === "rating") {
+    const el = document.querySelector(`input[name="${currentQ.id}"]:checked`);
+    if (!el) return false;
+  } else {
+    const value = challengeData[currentQ.id];
+    if (!value || (typeof value === 'string' && value.trim() === '')) return false;
+  }
+  return true;
+}
+
+function submitChallenge() {
+  saveCurrentQuestionData();
+  
+  if (!validateCurrentQuestion()) {
     showToast("يرجى استكمال الحقول المطلوبة");
     return;
   }
   
-  downloadJSON({submittedAt:new Date().toISOString(), data: surveyData});
-  const view = document.getElementById("thankYouTmpl").content.cloneNode(true);
-  document.querySelector('.survey-container').replaceWith(view);
-  showToast("تم الإرسال بنجاح");
+  // Calculate final points
+  userStats.points = calculatePoints();
+  userStats.level = Math.floor(userStats.points / 100) + 1;
+  
+  // Show results
+  showResults();
+  
+  downloadJSON({
+    submittedAt: new Date().toISOString(),
+    userStats: userStats,
+    answers: challengeData
+  });
+  
+  showToast("تم إرسال التحدي بنجاح!");
 }
+
+function shouldShowAnswerFeedback() {
+  // Find current question
+  let questionIndex = 0;
+  let currentQ = null;
+  
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
+    if (currentQuestion < questionIndex + category.questions.length) {
+      currentQ = category.questions[currentQuestion - questionIndex];
+      break;
+    }
+    questionIndex += category.questions.length;
+  }
+  
+  return currentQ && currentQ.type === "video" && currentQ.correctAnswer;
+}
+
+function showAnswerFeedback() {
+  // Find current question
+  let questionIndex = 0;
+  let currentQ = null;
+  
+  for (let i = 0; i < challengeCategories.length; i++) {
+    const category = challengeCategories[i];
+    if (currentQuestion < questionIndex + category.questions.length) {
+      currentQ = category.questions[currentQuestion - questionIndex];
+      break;
+    }
+    questionIndex += category.questions.length;
+  }
+  
+  if (!currentQ) return;
+  
+  const userAnswer = challengeData[currentQ.id];
+  const isCorrect = userAnswer === currentQ.correctAnswer;
+  
+  // Update user stats
+  if (isCorrect) {
+    userStats.points += currentQ.points;
+    userStats.streak++;
+  } else {
+    userStats.streak = 0;
+  }
+  
+  const feedbackHTML = `
+    <div class="answer-feedback">
+      <div class="feedback-header">
+        <div class="feedback-icon ${isCorrect ? 'correct' : 'incorrect'}">
+          ${isCorrect ? '🎉' : '❌'}
+        </div>
+        <h2>${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة'}</h2>
+        <p>${isCorrect ? `+${currentQ.points} نقطة` : 'لا توجد نقاط لهذه الإجابة'}</p>
+      </div>
+      
+      <div class="feedback-video">
+        <h3>شاهد الهدف مرة أخرى:</h3>
+        <video controls width="100%" height="300">
+          <source src="${currentQ.video}" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو
+        </video>
+      </div>
+      
+      <div class="feedback-answer">
+        <h3>الإجابة الصحيحة:</h3>
+        <div class="correct-answer">
+          ${currentQ.options.find(opt => opt.value === currentQ.correctAnswer)?.label}
+        </div>
+      </div>
+      
+      <div class="feedback-stats">
+        <div class="stat-item">
+          <span class="stat-label">نقاطك الحالية:</span>
+          <span class="stat-value">${userStats.points}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">تسلسل الإجابات الصحيحة:</span>
+          <span class="stat-value">${userStats.streak}</span>
+        </div>
+      </div>
+      
+      <button class="btn btn-primary" onclick="continueToNextQuestion()">
+        ${currentQuestion < totalQuestions - 1 ? 'السؤال التالي' : 'إنهاء التحدي'}
+      </button>
+    </div>
+  `;
+  
+  root.innerHTML = feedbackHTML;
+  updateGamificationStats();
+}
+
+function continueToNextQuestion() {
+  if (currentQuestion < totalQuestions - 1) {
+    currentQuestion++;
+    renderCurrentStep('next');
+  } else {
+    submitChallenge();
+  }
+}
+
+function showResults() {
+  const resultsHTML = `
+    <div class="results-container">
+      <div class="results-header">
+        <div class="trophy">🏆</div>
+        <h2>مبروك! لقد أكملت التحدي</h2>
+        <p>نتائجك الرائعة:</p>
+      </div>
+      
+      <div class="results-stats">
+        <div class="result-card">
+          <div class="result-icon">⭐</div>
+          <div class="result-value">${userStats.points}</div>
+          <div class="result-label">نقطة</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">🎯</div>
+          <div class="result-value">${userStats.level}</div>
+          <div class="result-label">مستوى</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">🔥</div>
+          <div class="result-value">${userStats.streak}</div>
+          <div class="result-label">تسلسل</div>
+        </div>
+      </div>
+      
+      <div class="achievements">
+        <h3>الإنجازات المكتسبة:</h3>
+        <div class="achievement-badge">🏆 مشجع الهلال المخلص</div>
+        <div class="achievement-badge">⭐ خبير تاريخ الهلال</div>
+        <div class="achievement-badge">🎯 عاشق النجوم</div>
+      </div>
+      
+      <button class="btn btn-primary" onclick="window.location.reload()">تحدي جديد</button>
+    </div>
+  `;
+  
+  document.querySelector('.survey-container').innerHTML = resultsHTML;
+}
+
 
 // Event listeners
 nextBtn.addEventListener("click", nextStep);
 prevBtn.addEventListener("click", prevStep);
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  submitSurvey();
+  submitChallenge();
 });
 
 // Initialize
 renderCurrentStep();
+updateGamificationStats();
 
-// Authentication System
+// Authentication System (keeping existing functionality)
 const authModal = document.getElementById("authModal");
 const loginBtn = document.getElementById("loginBtn");
 const closeAuth = document.getElementById("closeAuth");
@@ -679,14 +943,12 @@ signInForm.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
   showToast("تم تسجيل الدخول بنجاح!");
   hideAuthModal();
-  // Here you would typically handle the actual authentication
 });
 
 signUpForm.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
   showToast("تم إنشاء الحساب بنجاح!");
   hideAuthModal();
-  // Here you would typically handle the actual registration
 });
 
 // Close modal with Escape key

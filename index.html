@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>استبيان نادي الهلال</title>
+  <title>تحدي مشجعي الهلال</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -29,8 +29,29 @@
 
   <main class="container">
     <section class="intro card">
-      <h1>استبيان تقييم المدرب</h1>
-      <p class="muted">نقدّر وقتك. يهدف هذا الاستبيان إلى تقييم أداء المدرب وتطوير العملية التدريبية. تستغرق الإجابة أقل من 5 دقائق.</p>
+      <div class="challenge-header">
+        <div class="challenge-badge">🏆</div>
+        <h1>تحدي مشجعي الهلال</h1>
+        <p class="challenge-subtitle">اختبر معرفتك بنادي الهلال وفز بجوائز رائعة!</p>
+      </div>
+      
+      <div class="gamification-stats">
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="currentPoints">0</div>
+          <div class="stat-label">نقاطك</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value" id="currentLevel">1</div>
+          <div class="stat-label">مستواك</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="streak">0</div>
+          <div class="stat-label">تسلسل</div>
+        </div>
+      </div>
     </section>
 
     <div class="survey-container card">
