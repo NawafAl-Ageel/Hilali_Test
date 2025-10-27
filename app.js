@@ -10,7 +10,7 @@ const challengeCategories = [
           type: "image",
           label: "من هو هذا اللاعب؟",
           required: true,
-          image: "images/q1/malcom_covered.jpg",
+          image: "images/Q1/Malcom_Covered.jpg",
           options: [
             {value:"malcolm", label:"مالكوم"},
             {value:"neymar", label:"نيمار"},
@@ -19,14 +19,14 @@ const challengeCategories = [
           ],
           correctAnswer: "malcolm",
           points: 15,
-          feedbackImage: "images/q1/malcom_uncovered.jpg"
+          feedbackImage: "images/Q1/Malcom_Uncovered.jpg"
         },
       {
         id: "city_match_result",
         type: "image",
         label: "من هو الفريق المنافس في هذه المباراة؟",
         required: true,
-        image: "images/Q2/city_match_result_covered.png",
+        image: "images/Q2/City_Match_Result_Covered.png",
         options: [
           {value:"manchester_city", label:"مانشستر سيتي"},
           {value:"chelsea", label:"تشيلسي"},
@@ -35,7 +35,7 @@ const challengeCategories = [
         ],
         correctAnswer: "manchester_city",
         points: 20,
-        feedbackImage: "images/Q2/city_match_result_uncovered.png"
+        feedbackImage: "images/Q2/City_Match_Result_Uncovered.png"
       },
       {
         id: "thiago_neves_goal",
@@ -58,7 +58,7 @@ const challengeCategories = [
         type: "video",
         label: "من صاحب هذا الهدف الرائع؟",
         required: true,
-        video: "images/Q4/Nasir_Goal_covered.mp4",
+        video: "images/Q4/Nasir_Goal_Covered.mp4",
         options: [
           {value:"abdullah_al_hamdan", label:"عبدالله الحمدان"},
           {value:"bafetimbi_gomis", label:"بافيتيمبي جوميز"},
@@ -67,7 +67,7 @@ const challengeCategories = [
         ],
         correctAnswer: "nasser_al_dawsari",
         points: 25,
-        feedbackVideo: "images/Q4/Nasir_Goal_uncovered.mp4"
+        feedbackVideo: "images/Q4/Nasir_Goal_Uncovered.mp4"
       },
       {
         id: "nawaf_alaabid_player",
@@ -83,14 +83,14 @@ const challengeCategories = [
         ],
         correctAnswer: "nawaf_alaabid",
         points: 20,
-        feedbackImage: "images/Q7/Nawaf_Alaabid_uncovered.jpg"
+        feedbackImage: "images/Q7/Nawaf_Alaabid_Uncovered.jpg"
       },
       {
         id: "alhazm_match",
         type: "image",
         label: "من هو الفريق المنافس في هذه المباراة موسم 23/24؟",
         required: true,
-        image: "images/Q8/Alhazim_match_covered.jpg",
+        image: "images/Q8/Alhazim_Match_Covered.jpg",
         options: [
           {value:"alhazm", label:"الحزم"},
           {value:"alfateh", label:"الفتح"},
@@ -99,7 +99,7 @@ const challengeCategories = [
         ],
         correctAnswer: "alhazm",
         points: 20,
-        feedbackImage: "images/Q8/Alhazim_match_uncovered.png"
+        feedbackImage: "images/Q8/Alhazim_Match_Uncovered.png"
       }
     ]
   },
