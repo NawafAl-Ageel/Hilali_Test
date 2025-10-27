@@ -10,7 +10,7 @@ const challengeCategories = [
           type: "image",
           label: "من هو هذا اللاعب؟",
           required: true,
-          image: "images/q1/Malcom_Covered.jpg",
+          image: "images/Q1/Malcom_Covered.jpg",
           options: [
             {value:"malcolm", label:"مالكوم"},
             {value:"neymar", label:"نيمار"},
@@ -26,7 +26,7 @@ const challengeCategories = [
         type: "image",
         label: "من هو الفريق المنافس في هذه المباراة؟",
         required: true,
-        image: "images/Q2/City_Match_Result_Covered.png",
+        image: "images/Q2/city_match_result_covered.png",
         options: [
           {value:"manchester_city", label:"مانشستر سيتي"},
           {value:"chelsea", label:"تشيلسي"},
@@ -35,7 +35,7 @@ const challengeCategories = [
         ],
         correctAnswer: "manchester_city",
         points: 20,
-        feedbackImage: "images/Q2/City_Match_Result_Uncovered.png"
+        feedbackImage: "images/Q2/city_match_result_uncovered.png"
       },
       {
         id: "thiago_neves_goal",
@@ -58,7 +58,7 @@ const challengeCategories = [
         type: "video",
         label: "من صاحب هذا الهدف الرائع؟",
         required: true,
-        video: "images/Q4/Nasir_Goal_Covered.mp4",
+        video: "images/Q4/Nasir_Goal_covered.mp4",
         options: [
           {value:"abdullah_al_hamdan", label:"عبدالله الحمدان"},
           {value:"bafetimbi_gomis", label:"بافيتيمبي جوميز"},
@@ -83,7 +83,7 @@ const challengeCategories = [
         ],
         correctAnswer: "nawaf_alaabid",
         points: 20,
-        feedbackImage: "images/Q7/Nawaf_Alaabid_Uncovered.jpg"
+        feedbackImage: "images/Q7/Nawaf_Alaabid_uncovered.jpg"
       },
       {
         id: "alhazm_match",
