@@ -10,7 +10,7 @@ const challengeCategories = [
           type: "image",
           label: "من هو هذا اللاعب؟",
           required: true,
-          image: "images/q1/malcom_covered.jpg",
+          image: "images/q1/Malcom_Uncovered.jpg.jpg",
           options: [
             {value:"malcolm", label:"مالكوم"},
             {value:"neymar", label:"نيمار"},
