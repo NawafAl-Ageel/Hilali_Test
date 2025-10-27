@@ -90,7 +90,7 @@ const challengeCategories = [
         type: "image",
         label: "من هو الفريق المنافس في هذه المباراة موسم 23/24؟",
         required: true,
-        image: "images/Q8/Alhazim_Match_Covered.jpg",
+        image: "images/Q8/Alhazim_match_covered.jpg",
         options: [
           {value:"alhazm", label:"الحزم"},
           {value:"alfateh", label:"الفتح"},
@@ -99,7 +99,7 @@ const challengeCategories = [
         ],
         correctAnswer: "alhazm",
         points: 20,
-        feedbackImage: "images/Q8/Alhazim_Match_Uncovered.png"
+        feedbackImage: "images/Q8/Alhazim_match_uncovered.png"
       }
     ]
   },
@@ -872,13 +872,7 @@ function nextStep() {
 
 // prevStep function removed - no longer needed
 
-function downloadJSON(obj, filename="alhilal-challenge-results.json"){
-  const blob = new Blob([JSON.stringify(obj,null,2)],{type:"application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href=url;a.download=filename;a.click();
-  URL.revokeObjectURL(url);
-}
+// downloadJSON function removed - no longer needed
 
 function showToast(msg){
   toast.textContent = msg;
@@ -929,12 +923,6 @@ function submitChallenge() {
 
   // Show results
   showResults();
-
-  downloadJSON({
-    submittedAt: new Date().toISOString(),
-    userStats: userStats,
-    answers: challengeData
-  });
 
   showToast("تم إرسال التحدي بنجاح!");
 }
