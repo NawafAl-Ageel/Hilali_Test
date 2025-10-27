@@ -3,59 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>تحدي مشجعي الهلال</title>
+  <title>اختبر هلاليتك</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
-  <link rel="icon" type="image/png" href="images/icon.png">
+  <link rel="icon" type="image/x-icon" href="images/Hilali_Test_Logo2.png">
 </head>
 <body>
   <header class="topbar">
-    <div class="container topbar__inner">
+    <div class="container topbar__inner" style="display: flex; justify-content: space-between; align-items: center;">
       <div class="brand">
-        <div class="brand__text">
-      <a href="https://tawuniya.com"><img src="./images/tawuniya-logo.svg" alt="logo" width="100px"></a>
+        <div class="brand__text" style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+          <a href="https://tawuniya.com" style="display: flex;"><img src="./images/tawuniya-logo.svg" alt="logo" width="60px" style="display: block;"></a>
+          <span style="font-size: 12px; color: #64748b; font-weight: 400; white-space: nowrap;">Powered by</span>
         </div>
       </div>
-      <div class="header-actions">
-        <button id="loginBtn" class="login-btn" type="button">
-          <span>تسجيل الدخول</span>
-          <span class="login-icon"><img src="data:image/svg+xml,%3csvg%20fill='none'%20height='16'%20width='17'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20fill='%236b47f5'%3e%3cpath%20d='m11.43%2015.702h-.098c-3.33%200-4.935-1.312-5.212-4.252a.564.564%200%200%201%20.51-.615.569.569%200%200%201%20.615.51c.218%202.355%201.327%203.232%204.095%203.232h.098c3.052%200%204.132-1.08%204.132-4.132v-4.89c0-3.053-1.08-4.133-4.133-4.133h-.097c-2.783%200-3.893.893-4.095%203.293a.565.565%200%200%201%20-.615.51.563.563%200%200%201%20-.518-.608c.255-2.985%201.868-4.32%205.22-4.32h.098c3.683%200%205.258%201.575%205.258%205.258v4.89c0%203.682-1.575%205.257-5.258%205.257z'/%3e%3cpath%20d='m11.16%208.562h-9.66a.567.567%200%200%201%20-.563-.562c0-.308.255-.563.563-.563h9.66a.562.562%200%201%201%200%201.125z'/%3e%3cpath%20d='m9.488%2011.075a.556.556%200%200%201%20-.398-.165.566.566%200%200%201%200-.795l2.115-2.115-2.115-2.115a.566.566%200%200%201%200-.795.566.566%200%200%201%20.795%200l2.513%202.512a.566.566%200%200%201%200%20.795l-2.513%202.513a.556.556%200%200%201%20-.397.165z'/%3e%3c/g%3e%3c/svg%3e" alt="login" width="20px"></span>
-        </button>
+      <div class="center-logo" style="position: absolute; left: 50%; transform: translateX(-50%);">
+        <img src="./images/Hilali_Test_Logo2.png" alt="Alhilal Logo" style="height: 110px; display: block;">
       </div>
+      <div style="width: 90px;"></div>
     </div>
   </header>
 
-  <main class="container">
-    <section class="intro card">
-      <div class="challenge-header">
-        <div class="challenge-badge">🏆</div>
-        <h1>تحدي مشجعي الهلال</h1>
-        <p class="challenge-subtitle">اختبر معرفتك بنادي الهلال وفز بجوائز رائعة!</p>
-      </div>
-      
-      <div class="gamification-stats">
-        <div class="stat-card">
-          <div class="stat-icon">⭐</div>
-          <div class="stat-value" id="currentPoints">0</div>
-          <div class="stat-label">نقاطك</div>
+  <!-- Intro Animation Splash Screen -->
+  <div id="introAnimation" class="intro-splash">
+    <div class="intro-background">
+      <div class="intro-particles"></div>
+      <div class="intro-content">
+        <div class="logo-container">
+          <img src="./images/Hilali_Test_Logo2.png" alt="Alhilal Logo" class="intro-logo">
+          <div class="logo-glow"></div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">🎯</div>
-          <div class="stat-value" id="currentLevel">1</div>
-          <div class="stat-label">مستواك</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🔥</div>
-          <div class="stat-value" id="streak">0</div>
-          <div class="stat-label">تسلسل</div>
+        <div class="intro-progress">
+          <div class="progress-bar-intro">
+            <div class="progress-fill-intro"></div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
+  <main class="container">
     <div class="survey-container card">
       <!-- Progress Indicator -->
+       <br>
       <div class="progress-container">
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill"></div>
@@ -80,7 +72,6 @@
 
         <!-- Navigation -->
         <div class="form__actions">
-          <button type="button" id="prevBtn" class="btn btn-ghost" style="display:none">السابق</button>
           <div class="nav-spacer"></div>
           <button type="button" id="nextBtn" class="btn btn-primary">التالي</button>
           <button type="submit" id="submitBtn" class="btn btn-primary" style="display:none">إرسال الاستبيان</button>
