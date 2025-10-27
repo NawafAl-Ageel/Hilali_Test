@@ -1489,6 +1489,32 @@ body.intro-complete .container {
   }
 }
 
+/* Mobile responsive for header */
+@media (max-width: 768px) {
+  .topbar__inner {
+    height: 50px;
+    padding: 0 10px;
+  }
+  
+  .brand img {
+    width: 40px !important;
+    height: auto;
+  }
+  
+  .brand .brand__text span {
+    font-size: 10px !important;
+  }
+  
+  .center-logo img {
+    height: 70px !important;
+    width: auto;
+  }
+  
+  .brand__text {
+    gap: 6px !important;
+  }
+}
+
 /* Question Styles */
 .question{
   margin-bottom:32px;
