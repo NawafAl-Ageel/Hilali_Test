@@ -321,8 +321,15 @@ function renderQuestion(q) {
       });
       
       // Set video source
-      video.src = q.video;
-      video.setAttribute("preload", "metadata");
+      const source = el("source", { src: q.video, type: "video/mp4" });
+      video.append(source);
+      video.setAttribute("preload", "auto");
+
+      // Ensure autoplay once ready
+      video.addEventListener('canplay', () => {
+        const p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(()=>{});
+      }, { once: true });
       
       videoContainer.append(video);
       
@@ -381,9 +388,16 @@ function renderQuestion(q) {
       autoplay: true,
       loop: true,
       muted: false,
+      playsinline: true,
       style: "width:100%; margin-bottom:16px;"
     });
-    audio.src = q.audio;
+    const aSource = el("source", { src: q.audio, type: "audio/mp4" });
+    audio.append(aSource);
+    audio.setAttribute("preload", "auto");
+    audio.addEventListener('canplay', () => {
+      const p = audio.play();
+      if (p && typeof p.catch === 'function') p.catch(()=>{});
+    }, { once: true });
     audioContainer.append(audio);
     
     const list = el("div",{class:"choice-list"});
@@ -674,8 +688,18 @@ function showInstantFeedback(question, selectedValue) {
       video.style.opacity = '0';
 
       setTimeout(() => {
-        video.src = question.feedbackVideo;
+        // Replace source for better caching behavior
+        while (video.firstChild) video.removeChild(video.firstChild);
+        const srcEl = document.createElement('source');
+        srcEl.src = question.feedbackVideo;
+        srcEl.type = 'video/mp4';
+        video.appendChild(srcEl);
+        video.setAttribute('preload','auto');
         video.load();
+        video.addEventListener('canplay', () => {
+          const p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(()=>{});
+        }, { once: true });
         video.style.opacity = '1';
       }, 300);
     }
@@ -689,8 +713,17 @@ function showInstantFeedback(question, selectedValue) {
       audio.style.opacity = '0';
 
       setTimeout(() => {
-        audio.src = question.feedbackAudio;
+        while (audio.firstChild) audio.removeChild(audio.firstChild);
+        const srcEl = document.createElement('source');
+        srcEl.src = question.feedbackAudio;
+        srcEl.type = 'audio/mp4';
+        audio.appendChild(srcEl);
+        audio.setAttribute('preload','auto');
         audio.load();
+        audio.addEventListener('canplay', () => {
+          const p = audio.play();
+          if (p && typeof p.catch === 'function') p.catch(()=>{});
+        }, { once: true });
         audio.style.opacity = '1';
       }, 300);
     }
