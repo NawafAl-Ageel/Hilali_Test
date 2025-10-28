@@ -111,7 +111,7 @@ const challengeCategories = [
       {
         id: "top_scorer_history",
         type: "radio",
-        label: "من هو الهداف التاريخي لنادي الهلال؟",
+        label: "من هو الهداف التاريخي للنادي؟",
         required: true,
         options: [
           {value:"nawaf_altimyat", label:"نواف التمياط"},
